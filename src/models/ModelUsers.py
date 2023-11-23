@@ -1,6 +1,10 @@
 from .entities.users import User
 from .entities.productos import Producto
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 class ModelUsers:
     @classmethod
     def get_by_id(cls, db, user_id):
@@ -32,7 +36,13 @@ class ModelUsers:
         except Exception as ex:
             raise Exception(ex)
 
+<<<<<<< HEAD
     # Métodos relacionados con productos
+=======
+# Productos
+# ------------------------------------------------------------------------------------------------------------
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
     @classmethod
     def obtener_todos_los_productos(cls, db):
         try:
@@ -85,6 +95,7 @@ class ModelUsers:
                 db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
+<<<<<<< HEAD
 
     # Métodos relacionados con usuarios
     @classmethod
@@ -138,3 +149,5 @@ class ModelUsers:
                 db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85

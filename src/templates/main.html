@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 <head>
     <title>Coffee & Dreams - Página Principal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 <body>
     <header>
         <div class="logo">
@@ -18,10 +24,16 @@
                 <li><a href="{{ url_for('principal') }}">Inicio</a></li>
                 {% if current_user.usertype == 1 %}
                     <li id="catalog-link"><a href="{{ url_for('mostrar_productos') }}" href="{{ url_for('catalogo') }}">Catálogo</a></li>
+<<<<<<< HEAD
                     <li><a href="{{ url_for('mostrar_usuarios') }}">Usuarios</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
                 <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
+=======
+                {% endif %}
+                <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
+                <li><a href="{{ url_for('acerca') }}">Acerca de</a></li> 
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
             </ul>
             <h3>{{ current_user.fullname }}</h3>
         </nav>
@@ -29,7 +41,16 @@
     </header>
 
     <main>
+<<<<<<< HEAD
         <div class="calculator-button" id="toggle-calculator">Calculadora</div>
+=======
+
+
+
+
+        <div class="calculator-button" id="toggle-calculator">Calculadora</div>
+        
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
         <div class="calculator-container">
             <div class="calculator">
                 <input type="text" id="display" value="0" readonly>
@@ -55,8 +76,14 @@
             </div>
         </div>
     </main>
+<<<<<<< HEAD
 
     <script src="{{ url_for('static', filename='js/scriptCalculadora.js') }}"></script>
 </body>
 
+=======
+    
+    <script src="{{ url_for('static', filename='js/scriptCalculadora.js') }}"></script>
+</body>
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 </html>

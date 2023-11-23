@@ -116,6 +116,7 @@ def agregar_producto():
 @admin_required
 def editar_producto(id):
     if request.method == "POST":
+<<<<<<< HEAD
         # Obtener datos del formulario de edición
         nuevo_nombre = request.form.get("nombre")
         nueva_imagen = request.form.get("imagen")
@@ -125,6 +126,16 @@ def editar_producto(id):
             db, id, nuevo_nombre, nueva_imagen, nuevo_precio)
 
     # Redireccionar a la página de catálogo o a donde sea apropiado
+=======
+        # Obtener los datos del formulario
+        nombre = request.form['nombre']
+        imagen = request.form['imagen']
+        precio = request.form['precio']
+
+        # Llamar al método para actualizar el producto
+        ModelUsers.actualizar_producto(db, id, nombre, imagen, precio)
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
     return redirect(url_for("catalogo"))
 
 
@@ -154,6 +165,7 @@ def mostrar_productos():
         return f"Error: {ex}"
 
 
+<<<<<<< HEAD
 # Rutas y lógica para la gestión de usuarios
 @app.route("/mostrar_usuarios")
 @login_required
@@ -219,6 +231,8 @@ def eliminar_usuario(id):
     return redirect(url_for("mostrar_usuarios"))
 
 
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 if __name__ == '__main__':
     app.config.from_object(config['development'])
     app.run()

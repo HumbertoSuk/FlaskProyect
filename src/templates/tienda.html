@@ -17,7 +17,10 @@
                 <li><a href="{{ url_for('principal') }}">Inicio</a></li>
                 {% if current_user.usertype == 1 %}
                     <li id="catalog-link"><a href="{{ url_for('mostrar_productos') }}" href="{{ url_for('catalogo') }}">Catálogo</a></li>
+<<<<<<< HEAD
                     <li><a href="{{ url_for('mostrar_usuarios') }}">Usuarios</a></li>
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
                 {% endif %}
                 <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
                 <li><a href="{{ url_for('acerca') }}">Acerca de</a></li> 

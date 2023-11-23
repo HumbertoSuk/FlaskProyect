@@ -2,7 +2,11 @@
 <html>
 
 <head>
+<<<<<<< HEAD
     <title>Coffee & Dreams - Catálogo de Productos</title>
+=======
+    <title>Coffee & Dreams - Página Principal</title>
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
@@ -18,7 +22,10 @@
                 <li><a href="{{ url_for('principal') }}">Inicio</a></li>
                 {% if current_user.usertype == 1 %}
                     <li id="catalog-link"><a href="{{ url_for('mostrar_productos') }}" href="{{ url_for('catalogo') }}">Catálogo</a></li>
+<<<<<<< HEAD
                     <li><a href="{{ url_for('mostrar_usuarios') }}">Usuarios</a></li>
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
                 {% endif %}
                 <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
                 <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
@@ -32,6 +39,7 @@
 
         <div class="container">
             <h1>Catálogo de Productos</h1>
+<<<<<<< HEAD
 
             <!-- Formulario para agregar producto -->
             <div class="form-container">
@@ -116,6 +124,71 @@
 
 
         
+=======
+        
+            <!-- Formulario para agregar producto -->
+            <form action="{{ url_for('agregar_producto') }}"  method="post">
+                <div class="mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="imagen">Imagen URL</label>
+                    <input type="text" class="form-control" id="imagen" name="imagen" required>
+                </div>
+                <div class="mb-3">
+                    <label for="precio">Precio</label>
+                    <input type="number" class="form-control" id="precio" name="precio" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Producto</button>
+            </form>
+        
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tbody>
+            {% if productos %}
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td><img src="{{ producto.imagen }}" alt="Imagen del producto"></td>
+                    <td>{{ producto.precio }}</td>
+                    <td>
+                        <!-- Formulario para editar producto -->
+                        <form action="{{ url_for('editar_producto', id=producto.id) }}" method="post">
+                            <button type="submit" class="btn btn-warning">Editar</button>
+                        </form>
+    
+                        <!-- Formulario para eliminar producto -->
+                        <form action="{{ url_for('eliminar_producto', id=producto.id) }}" method="post">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay productos disponibles.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </tbody>
+</table>
+        </div>
+
+
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
         <div class="calculator-button" id="toggle-calculator">Calculadora</div>
 
         <div class="calculator-container">
@@ -144,6 +217,7 @@
         </div>
     </main>
 
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -179,6 +253,10 @@
 
     <script src="{{ url_for('static', filename='js/scriptCalculadora.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scriptCatalogo.js') }}"></script>
+=======
+    <script src="{{ url_for('static', filename='js/scriptCalculadora.js') }}"></script>
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 </body>
 
 </html>

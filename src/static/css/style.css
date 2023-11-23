@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 body {
     font-family: Arial, sans-serif;
     background-color: #e7d2b0;
@@ -5,9 +9,12 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     background: linear-gradient(45deg, #f9e9d2, #ffe1b0, #dfaa5f, #3a2606); /* Gradiente de fondo */
     background-size: 400% 400%;
     animation: gradientAnimation 10s ease infinite; /* Animación del gradiente */
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 }
 
     
@@ -96,6 +103,20 @@ button:hover {
     /* Cambio de color al pasar el mouse - color avellana */
 }
 
+<<<<<<< HEAD
+=======
+/*Style para el Main*/
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #f9e9d2, #ffe1b0, #dfaa5f, #3a2606); /* Gradiente de fondo */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite; /* Animación del gradiente */
+}
+
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;
@@ -404,6 +425,7 @@ nav ul li a:hover {
     color: #d1cfcf; /* Color de fuente negro */
 }
 
+<<<<<<< HEAD
 /* Agregar estilos para el contenedor del formulario */
 .form-container {
     background-color: #865d2e; /* Color café oscuro */
@@ -418,6 +440,8 @@ nav ul li a:hover {
 
 
 /*Tablas --------------------------------------- */
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 table {
     width: 100%;
     border-collapse: collapse;
@@ -438,13 +462,17 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+<<<<<<< HEAD
 
 /* imagen */
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 img {
     max-width: 100px;
     height: auto;
 }
 
+<<<<<<< HEAD
 /*Tablas------------------*/
 
 
@@ -456,6 +484,8 @@ img {
 
 
 /*Formulario de edicion------------------------------- */
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 #formularioEdicion {
     display: none;
     background-color: #927847;
@@ -517,7 +547,11 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background-color: rgba(0, 0, 0,0.5); /* Fondo oscuro difuminado */
+=======
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro difuminado */
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
     z-index: 1;
 }
 
@@ -535,7 +569,10 @@ img {
     z-index: 2;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 /* Botón de cierre */
 .close-button {
     position: absolute;
@@ -549,6 +586,7 @@ img {
     font-size: 24px;
     color: #000000;
 }
+<<<<<<< HEAD
 /*Fin del formulario de edicion------------------------------------------*/
 
 
@@ -559,6 +597,8 @@ img {
 
 
 
+=======
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
 
 
 /* Estilos para el botón de logout personalizado */
@@ -579,8 +619,12 @@ a.btn-logout {
 a.btn-logout:hover {
     background-color: #c9302c; /* Cambio de color al pasar el mouse */
     border-color: #c9302c; /* Cambio de color del borde al pasar el mouse */
+<<<<<<< HEAD
 }
 
 
 
 
+=======
+}
+>>>>>>> 03cb2531b5e47d75c30c35cf6a1d346054a87a85
