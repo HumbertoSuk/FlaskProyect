@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Coffee & Dreams - Catálogo de Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Coffee & Dreams Logo">
+            <h2 id="username-display"></h2>
+            <h2>Coffee & Dreams (๑>◡<๑)</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('principal') }}">Inicio</a></li>
+                {% if current_user.usertype == 1 %}
+                    <li id="catalog-link"><a href="{{ url_for('mostrar_productos') }}" href="{{ url_for('catalogo') }}">Catálogo</a></li>
+                    <li><a href="{{ url_for('mostrar_usuarios') }}">Usuarios</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
+                <li><a href="{{ url_for('acerca') }}">Acerca de</a></li>
+            </ul>
+            <h3>{{ current_user.fullname }}</h3>
+        </nav>
+        <a class="btn btn-logout" href="{{ url_for('logout') }}">LogOut</a>
+    </header>
+
+    <main>
+
+        <div class="container">
+            <h1>Catálogo de Productos</h1>
+
+            <!-- Formulario para agregar producto -->
+            <div class="form-container">
+                <form action="{{ url_for('agregar_producto') }}" method="post">
+                    <div class="mb-3">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen">Imagen URL</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" required>
+                    </div>
+                    <button type="submit" class="btn">Agregar Producto</button>
+                </form>
+            </div>
+            <!-- Tabla de productos -->
+            <table class="table" id="catalogo-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenará dinámicamente la tabla con productos -->
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td><img src="{{ producto.imagen }}" alt="Imagen del producto"></td>
+                        <td>{{ producto.precio }}</td>
+                        <td>
+                            <!-- Formulario para editar producto -->
+                            <button class="btn btn-warning" onclick="mostrarFormularioEdicion('{{ producto.id }}', '{{ producto.nombre|e }}', '{{ producto.imagen|e }}', '{{ producto.precio }}')">Editar</button>
+                                
+                        <!-- Formulario para eliminar producto con confirmación en JavaScript -->
+                            <form id="eliminarForm{{ producto.id }}" action="{{ url_for('eliminar_producto', id=producto.id) }}" method="post">
+                                <button type="button" class="btn" onclick="confirmarEliminar('{{ producto.id }}', '{{ producto.nombre }}')">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="modal" id="formularioEdicion">
+            <span class="close-button"></span>
+            <h1>Editar Producto</h1>
+            <form id="editarProductoForm">
+                <input type="hidden" id="editarId">
+                <div class="mb-3">
+                    <label for="editarNombre">Nombre (Descripción)</label>
+                    <input type="text" class="form-control" id="editarNombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editarImagen">URL de la Imagen</label>
+                    <input type="text" class="form-control" id="editarImagen" name="imagen" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editarPrecio">Precio</label>
+                    <input type="number" class="form-control" id="editarPrecio" name="precio" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+
+
+
+
+
+
+        
+        <div class="calculator-button" id="toggle-calculator">Calculadora</div>
+
+        <div class="calculator-container">
+            <div class="calculator">
+                <input type="text" id="display" value="0" readonly>
+                <div class="buttons">
+                    <button class="operator" value="+">+</button>
+                    <button class="operator" value="-">-</button>
+                    <button class="operator" value="*">*</button>
+                    <button class="operator" value="/">/</button>
+                    <button value="1">1</button>
+                    <button value="2">2</button>
+                    <button value="3">3</button>
+                    <button value="4">4</button>
+                    <button value="5">5</button>
+                    <button value="6">6</button>
+                    <button value="7">7</button>
+                    <button value="8">8</button>
+                    <button value="9">9</button>
+                    <button value="0">0</button>
+                    <button value="." class="decimal">.</button>
+                    <button id="clear" class="clear">C</button>
+                    <button id="calculate" class="equal">=</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Función para cargar y actualizar la tabla de productos
+            function cargarProductos() {
+                $.ajax({
+                    url: '{{ url_for("mostrar_productos") }}',
+                    type: 'GET',
+                    success: function (data) {
+                        // Actualiza la sección de la tabla con los nuevos datos
+                        $('#catalogo-table').html($(data).find('#catalogo-table').html());
+                    },
+                    error: function (error) {
+                        console.error('Error al cargar los productos:', error);
+                    }
+                });
+            }
+
+            // Llama a cargarProductos al cargar la página
+            cargarProductos();
+        });
+
+        // Función para confirmar la eliminación
+        function confirmarEliminar(id, nombre) {
+            var confirmacion = confirm("¿Estás seguro de eliminar el producto '" + nombre + "'?");
+            if (confirmacion) {
+                document.getElementById('eliminarForm' + id).submit();
+            } else {
+                // Si el usuario cancela, no hacer nada
+            }
+        }
+    </script>
+
+    <script src="{{ url_for('static', filename='js/scriptCalculadora.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scriptCatalogo.js') }}"></script>
+</body>
+
+</html>
